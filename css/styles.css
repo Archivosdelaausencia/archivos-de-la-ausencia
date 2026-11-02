@@ -537,3 +537,37 @@ body {
       display: block;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     }
+    /* Estilo base y fondo para todas las páginas interiores */
+    .my-page {
+      background-image: url('fondo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: var(--paper-text);
+      padding: 35px 40px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.08);
+    }
+
+    .my-page.--left {
+      border-right: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .my-page.--right {
+      border-left: 1px solid rgba(0,0,0,0.15);
+    }
+    /* Banner Portada Superior */
+    .hero-portada-banner {
+      width: 100%;
+      height: 320px;
+      background-image: url('pagPortada.jpg'); /* <--- Aquí está declarada */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: block;
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    } 
