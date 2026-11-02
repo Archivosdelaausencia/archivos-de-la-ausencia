@@ -1,224 +1,548 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARCHIVOS DE LA AUSENCIA — Revista Digital Interactiva</title>
-  
-  <!-- Fuentes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Librería Page-Flip de StPageFlip -->
-  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.js"></script>
+/* Variables de color y tipografía */
+:root {
+  --bg-primary: #f8f9fa;
+  --bg-alt: #e9ecef;
+  --bg-dark: #1a1a1a;
+  --text-main: #212529;
+  --text-muted: #6c757d;
+  --text-light: #f8f9fa;
+  --accent-color: #343a40;
+  --highlight-color: #0056b3;
+  --correct-color: #28a745;
+  --wrong-color: #dc3545;
+  --font-serif: 'Merriweather', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-  <style>
-    :root {
-      --bg-dark: #0f0f12;
-      --gold: #d4af37;
-      --accent: #8b0000;
-      --paper-text: #1a1a1a;
-      --card-bg: rgba(255, 255, 255, 0.04);
-      --card-border: rgba(255, 255, 255, 0.1);
-    }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  line-height: 1.7;
+  scroll-behavior: smooth;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
 
-    body {
-      background-color: var(--bg-dark);
-      background-image: radial-gradient(circle at center, #1f1f26 0%, #08080a 100%);
-      color: #e0e0e0;
-      font-family: 'Roboto', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  z-index: 1000;
+  border-bottom: 2px solid #333;
+}
 
-    /* Header Navegación Flotante / Fijo */
-    .magazine-nav {
-      position: sticky;
-      top: 0;
-      background: rgba(15, 15, 18, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 12px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-    }
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
 
-    .nav-brand {
-      font-family: 'Cinzel', serif;
-      font-size: 1.05rem;
-      letter-spacing: 2.5px;
-      color: var(--gold);
-      font-weight: 700;
-      text-decoration: none;
-    }
+.brand-logo {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
-    .nav-links a {
-      color: #ccc;
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      transition: color 0.25s;
-    }
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 1.2rem;
+}
 
-    .nav-links a:hover {
-      color: var(--gold);
-    }
+.nav-menu a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
 
-    .nav-controls {
-      display: flex;
-      align-items: center;
-    }
+.nav-menu a:hover {
+  color: #fff;
+}
 
-    .nav-controls button {
-      background: rgba(255,255,255,0.06);
-      color: #ddd;
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 6px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.25s;
-      margin-left: 6px;
-    }
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../assets/hero-bg.jpg') center/cover no-repeat #111;
+  color: #fff;
+  padding: 6rem 0;
+  text-align: center;
+}
 
-    .nav-controls button:hover {
-      background: var(--gold);
-      color: #000;
-      border-color: var(--gold);
-    }
+.tagline {
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: #aaa;
+  display: block;
+  margin-bottom: 1rem;
+}
 
-    /* PORTADA GENERAL PRINCIPAL (SOBRE LA REVISTA) */
-    .site-main-cover {
+.hero-section h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #ddd;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background-color: #fff;
+  color: #111;
+}
+
+.btn-primary:hover {
+  background-color: #ddd;
+}
+
+/* Index Section */
+.index-section {
+  background-color: #222;
+  color: #fff;
+  padding: 3rem 0;
+}
+
+.index-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.index-card {
+  background: #2b2b2b;
+  padding: 1rem 1.2rem;
+  color: #ddd;
+  text-decoration: none;
+  border-left: 3px solid #555;
+  transition: all 0.3s;
+}
+
+.index-card span {
+  font-weight: 700;
+  color: #888;
+  margin-right: 0.5rem;
+}
+
+.index-card:hover {
+  background: #333;
+  border-left-color: #fff;
+  color: #fff;
+}
+
+/* Section Common Styles */
+.content-section {
+  padding: 4rem 0;
+}
+
+.bg-alt {
+  background-color: var(--bg-alt);
+}
+
+.bg-dark {
+  background-color: var(--bg-dark);
+}
+
+.text-light {
+  color: var(--text-light);
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header.center {
+  text-align: center;
+}
+
+.section-number {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  display: block;
+}
+
+.bg-dark .section-number {
+  color: #888;
+}
+
+.section-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin-top: 0.3rem;
+}
+
+.leading-text p {
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  border-left: 4px solid var(--accent-color);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  color: #444;
+}
+
+.styled-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.styled-list li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.styled-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+}
+
+/* Timeline */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.timeline-item {
+  background: #282828;
+  padding: 1.5rem;
+  border-top: 3px solid #666;
+  border-radius: 4px;
+}
+
+.timeline-item .year {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.timeline-item .details {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* Archives Cards */
+.archives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.archive-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.archive-icon {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.archive-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.archive-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Art Section */
+.art-card-featured {
+  background: #fff;
+  border-left: 5px solid #111;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.art-card-featured h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Word Selection Section */
+.word-cloud-container {
+  text-align: center;
+  background: #252525;
+  padding: 2.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.word-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.tag-btn {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 0.6rem 1.4rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.tag-btn.active {
+  background: #fff;
+  color: #111;
+  border-color: #fff;
+  font-weight: bold;
+}
+
+.selection-feedback {
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: #aaa;
+}
+
+/* Quiz Section */
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.quiz-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.quiz-question {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quiz-btn {
+  text-align: left;
+  padding: 0.8rem 1rem;
+  background: #f1f3f5;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.quiz-btn:hover {
+  background: #e9ecef;
+}
+
+.quiz-btn.correct {
+  background-color: var(--correct-color);
+  color: #fff;
+  border-color: var(--correct-color);
+}
+
+.quiz-btn.wrong {
+  background-color: var(--wrong-color);
+  color: #fff;
+  border-color: var(--wrong-color);
+}
+
+.quiz-result {
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid #333;
+}
+
+.footer h2 {
+  font-family: var(--font-serif);
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer p {
+  margin-bottom: 1rem;
+}
+
+.footer-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  border-left: 3px solid #555;
+  padding-left: 1rem;
+  margin: 2rem 0;
+  color: #aaa;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #222;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #1a1a1a;
+    padding: 1rem 0;
+  }
+
+  .nav-menu.active {
+    display: block;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+}
+
+.team-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 25px !important;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.33%;
+  gap: 20px;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.site-main-cover-img {
       width: 100%;
-      min-height: 380px;
-      background: linear-gradient(180deg, rgba(15,15,18,0.4) 0%, rgba(15,15,18,0.95) 100%), url('img/portada-sitio.jpg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px 30px 20px;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-      position: relative;
+      max-width: 380px;
+      height: 110px;            /* Altura bien bajita para formato rectangular */
+      object-fit: contain;      /* Muestra la imagen entera sin recortarla */
+      background: rgba(0, 0, 0, 0.4); /* Fondo sutil por si la imagen es transparente o angosta */
+      border-radius: 4px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      margin: 0 auto 15px auto;
+      display: block;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     }
-
-    .site-main-cover-box {
-      max-width: 800px;
-      background: rgba(10, 10, 14, 0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      padding: 35px 40px;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-    }
-
-    .site-main-title {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      color: var(--gold);
-      letter-spacing: 3px;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
-    }
-
-    .site-main-subtitle {
-      font-family: 'Merriweather', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: #eaeaea;
-      margin-bottom: 15px;
-    }
-
-    .site-main-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 2.5px;
-      color: var(--accent);
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    /* SECCIÓN 1: REVISTA / HERO */
-    .magazine-hero {
-      min-height: calc(100vh - 60px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-      position: relative;
-    }
-
-    .magazine-viewport {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      perspective: 1200px;
-    }
-
-    .flipbook-container {
-      width: 900px;
-      height: 600px;
-      margin: 0 auto;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.9);
-      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.8s ease;
-    }
-
-    .flipbook-container.book-closed-end {
-      transform: scale(0.9) rotateY(-8deg);
-      box-shadow: -20px 40px 90px rgba(0,0,0,0.95), 0 0 25px rgba(212, 175, 55, 0.12);
-    }
-
-    .scroll-indicator {
-      margin-top: 25px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: var(--gold);
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      opacity: 0.7;
-      text-decoration: none;
-      transition: opacity 0.3s;
-    }
-
-    .scroll-indicator:hover {
-      opacity: 1;
-    }
-
-    .scroll-indicator span {
-      font-size: 1.2rem;
-      margin-top: 4px;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(6px); }
-      60% { transform: translateY(3px); }
-    }
-
-    /* Estilos de las Hojas */
+    /* Estilo base y fondo para todas las páginas interiores */
     .my-page {
-      background-color: #f5f2ea;
+      background-image: url('fondo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       color: var(--paper-text);
       padding: 35px 40px;
       overflow-y: auto;
@@ -229,1060 +553,21 @@
     }
 
     .my-page.--left {
-      background-image: url('img/hoja pagina izquierda.jpg');
-      background-size: cover;
-      background-position: center;
-      border-right: 1px solid rgba(0,0,0,0.1);
+      border-right: 1px solid rgba(0,0,0,0.15);
     }
 
     .my-page.--right {
-      background-image: url('img/hoja pagina derecha.jpg');
+      border-left: 1px solid rgba(0,0,0,0.15);
+    }
+    /* Banner Portada Superior */
+    .hero-portada-banner {
+      width: 100%;
+      height: 320px;
+      background-image: url('pagPortada.jpg'); /* <--- Aquí está declarada */
       background-size: cover;
       background-position: center;
-      border-left: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .my-page.--cover {
-      background-image: url('img/portada.jpg');
-      background-size: cover;
-      background-position: center;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .my-page.--back-cover {
-      background: linear-gradient(135deg, #0a0a0d 0%, #16161c 100%);
-      color: #fff;
-      padding: 25px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border-left: 3px solid rgba(212, 175, 55, 0.4);
-      box-shadow: inset 15px 0 30px rgba(0,0,0,0.8);
-      overflow-y: auto;
-    }
-
-    .cover-box {
-      background: rgba(10, 10, 14, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.4);
-      backdrop-filter: blur(5px);
-      padding: 30px 35px;
-      border-radius: 6px;
-      text-align: center;
-      margin: 20px;
-      max-width: 380px;
-    }
-
-    /* ESTILOS DE LA CONTRAPORTADA DE LA REVISTA */
-    .back-cover-container {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 15px;
-    }
-
-    .back-cover-img {
-      max-width: 85%;
-      max-height: 220px;
-      object-fit: contain;
-      border: 2px solid var(--gold);
-      border-radius: 6px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-
-    .back-cover-credits-box {
-      background: rgba(15, 15, 20, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 6px;
-      padding: 15px 20px;
-      width: 90%;
-    }
-
-    .back-cover-credits-title {
-      font-family: 'Cinzel', serif;
-      font-size: 0.95rem;
-      color: var(--gold);
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      border-bottom: 1px solid var(--accent);
-      padding-bottom: 4px;
-    }
-
-    .back-cover-team-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .back-cover-team-list li {
-      font-size: 0.82rem;
-      color: #ddd;
-      letter-spacing: 0.5px;
-    }
-
-    .cover-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.7rem;
-      color: var(--gold);
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-
-    .cover-subtitle {
-      font-family: 'Merriweather', serif;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: #ddd;
-      margin-bottom: 15px;
-    }
-
-    .btn-start-reading, .btn-reopen {
-      background: var(--gold);
-      color: #000;
-      font-weight: bold;
-      border: none;
-      padding: 11px 24px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.82rem;
-      letter-spacing: 1.5px;
-      transition: all 0.25s;
-    }
-
-    .btn-reopen:hover, .btn-start-reading:hover {
-      background: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-    }
-
-    .section-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      color: var(--accent);
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.45rem;
-      color: #111;
-      margin-bottom: 8px;
-      line-height: 1.2;
-    }
-
-    .divider {
-      border: 0;
-      height: 2px;
-      background: var(--accent);
-      width: 50px;
-      margin-bottom: 12px;
-    }
-
-    .content-body {
-      font-family: 'Merriweather', serif;
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: #222;
-    }
-
-    .content-body p { margin-bottom: 10px; text-align: justify; }
-
-    .bullet-list { list-style: none; margin: 8px 0; }
-    .bullet-list li { margin-bottom: 6px; padding-left: 18px; position: relative; }
-    .bullet-list li::before {
-      content: "•"; color: var(--accent); font-weight: bold; font-size: 1.1rem; position: absolute; left: 0; top: -2px;
-    }
-
-    .timeline-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; justify-content: center; }
-    .timeline-year {
-      background: var(--accent); color: #fff; padding: 4px 10px; font-family: 'Cinzel', serif; font-weight: bold; border-radius: 3px; font-size: 0.8rem;
-    }
-
-    .interactive-map { background: #e8e2d5; border: 1px solid #c8c0b0; border-radius: 6px; padding: 10px; margin-top: 8px; }
-    .map-nodes { display: flex; flex-direction: column; gap: 5px; }
-    .map-node-btn {
-      background: #fff; border: 1px solid var(--accent); color: var(--accent); padding: 5px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; cursor: pointer; text-align: left;
-    }
-    .map-node-btn:hover { background: var(--accent); color: #fff; }
-    .map-info-box { margin-top: 6px; background: rgba(255,255,255,0.9); border-left: 3px solid var(--accent); padding: 6px 10px; font-size: 0.78rem; display: none; }
-
-    .audio-player-card {
-      background: #1e1e24; color: #fff; border-radius: 6px; padding: 12px; margin-top: 10px; border: 1px solid var(--gold); display: flex; align-items: center; gap: 10px;
-    }
-    .audio-play-btn {
-      background: var(--gold); color: #000; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 0.9rem; font-weight: bold; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-
-    .archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
-    .archive-item {
-      background: rgba(0,0,0,0.05); border: 1px dashed #aaa; padding: 6px; border-radius: 4px; cursor: pointer; text-align: center; font-size: 0.75rem; font-weight: bold;
-    }
-    .archive-item:hover { background: rgba(139, 0, 0, 0.1); border-color: var(--accent); }
-
-    .words-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .word-chip {
-      background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.2); padding: 5px 10px; border-radius: 15px; font-family: 'Cinzel', serif; font-size: 0.75rem; cursor: pointer; user-select: none; transition: all 0.2s;
-    }
-    .word-chip.selected { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-    .wall-input-container { margin-top: 10px; display: flex; gap: 6px; }
-    .wall-input { flex: 1; padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.8rem; }
-    .wall-add-btn { background: var(--accent); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: bold; }
-    .memory-wall { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; max-height: 80px; overflow-y: auto; }
-    .memory-note { background: #fef08a; color: #713f12; padding: 3px 7px; border-radius: 3px; font-size: 0.72rem; box-shadow: 1px 2px 3px rgba(0,0,0,0.1); }
-
-    .quiz-item { margin-bottom: 10px; }
-    .quiz-question { font-weight: bold; margin-bottom: 3px; font-size: 0.82rem; }
-    .quiz-options button {
-      display: block; width: 100%; text-align: left; background: rgba(255,255,255,0.7); border: 1px solid #ccc; padding: 4px 8px; margin-bottom: 3px; border-radius: 3px; cursor: pointer; font-size: 0.78rem;
-    }
-    .quiz-options button.correct { background: #d4edda; border-color: #28a745; color: #155724; }
-    .quiz-options button.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
-
-    .flip-btn {
-      position: absolute; top: 50%; transform: translateY(-50%); background: rgba(18, 18, 22, 0.8); backdrop-filter: blur(5px); color: #fff; border: 1px solid rgba(255,255,255,0.2); width: 48px; height: 48px; border-radius: 50%; cursor: pointer; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; transition: all 0.25s; z-index: 50;
-    }
-    .flip-btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
-    .flip-btn.prev { left: 15px; }
-    .flip-btn.next { right: 15px; }
-
-    /* SECCIONES EXTERNAS DE SCROLL */
-    .page-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 80px 20px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .section-title-wrapper {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .section-subtitle {
-      font-family: 'Cinzel', serif;
-      color: var(--accent);
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-
-    .section-main-title {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
-      color: var(--gold);
-      margin-top: 5px;
-    }
-
-    /* EQUIPO / DETRÁS DE ESCENAS CON FOTOS CONSERVADAS */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin-bottom: 60px;
-    }
-
-    .team-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-
-    .team-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--gold);
-    }
-
-    .team-avatar {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 15px auto;
-      border: 2px solid var(--gold);
-      background: #1e1e24;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-    }
-
-    .team-name {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: #fff;
-    }
-
-    .team-role {
-      font-size: 0.82rem;
-      color: #aaa;
-      margin-top: 4px;
-    }
-
-    .behind-scenes-box {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 30px;
-    }
-
-    .behind-scenes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .bts-item {
-      background: rgba(0,0,0,0.3);
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .bts-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      background: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .bts-caption {
-      padding: 12px 15px;
-      font-size: 0.83rem;
-      color: #ccc;
-      line-height: 1.5;
-    }
-
-    /* REDES Y CONTACTO */
-    .social-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-bottom: 50px;
-    }
-
-    .social-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 25px 20px;
-      text-align: center;
-      text-decoration: none;
-      color: #fff;
-      transition: all 0.3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .social-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--gold);
-      background: rgba(212, 175, 55, 0.08);
-    }
-
-    .social-icon {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-
-    .social-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-    }
-
-    .social-handle {
-      font-size: 0.85rem;
-      color: #aaa;
-      margin-top: 4px;
-    }
-
-    .contact-container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 30px;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
+      background-repeat: no-repeat;
       display: block;
-      font-size: 0.82rem;
-      color: #ccc;
-      margin-bottom: 6px;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 10px 14px;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 6px;
-      color: #fff;
-      font-size: 0.9rem;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-
-    .btn-submit {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      letter-spacing: 1px;
-      width: 100%;
-      transition: background 0.3s;
-    }
-
-    .btn-submit:hover {
-      background: #b30000;
-    }
-
-    /* Footer General */
-    .magazine-footer {
-      background: rgba(10, 10, 12, 0.95);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 20px;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #aaa;
-    }
-
-    /* Modales */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px;
-    }
-    .modal-card {
-      background: #18181c; color: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 25px; max-width: 500px; width: 100%; position: relative;
-    }
-    .modal-close {
-      position: absolute; top: 12px; right: 15px; background: none; border: none; color: #aaa; font-size: 1.4rem; cursor: pointer;
-    }
-
-    .toc-panel {
-      position: fixed; top: 0; left: 0; width: 300px; height: 100%; background: rgba(15, 15, 18, 0.95); backdrop-filter: blur(15px); border-right: 1px solid rgba(255,255,255,0.1); z-index: 200; padding: 25px; transform: translateX(-100%); transition: transform 0.3s ease; overflow-y: auto;
-    }
-    .toc-panel.active { transform: translateX(0); }
-    .toc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-    .toc-header h3 { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold); }
-    .toc-header button { background: none; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; }
-    .toc-list { list-style: none; }
-    .toc-list li { margin-bottom: 12px; }
-    .toc-list a { color: #ccc; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; display: block; }
-    .toc-list a:hover { color: var(--gold); }
-  </style>
-</head>
-<body>
-
-  <!-- Header Nav -->
-  <header class="magazine-nav">
-    <a href="#" class="nav-brand">ARCHIVOS DE LA AUSENCIA</a>
-    <nav class="nav-links">
-      <a href="#revista">Revista</a>
-      <a href="#equipo">Equipo</a>
-      <a href="#contacto">Redes & Contacto</a>
-    </nav>
-    <div class="nav-controls">
-      <button id="btn-sound" title="Sonido de páginas">🔊 Sonido: ON</button>
-      <button id="btn-toc">📖 Índice</button>
-      <button id="btn-fullscreen">⛶ Pantalla Completa</button>
-    </div>
-  </header>
-
- <!-- PORTADA GENERAL PRINCIPAL (SOBRE LA REVISTA) -->
-  <section class="site-main-cover">
-    <div class="site-main-cover-box">
-      <img src="img/portada.jpg" alt="Portada Archivos de la Ausencia" 
-           style="display: block; margin: 0 auto 15px auto; width: 400px; height: 500px; object-fit: contain; border-radius: 4px; border: 1px solid #d4af37; box-shadow: 0 4px 12px rgba(0,0,0,0.7);" 
-           onerror="this.style.display='none'">
-      <span class="site-main-tag">Proyecto Educativo & Audiovisual — FADYCC</span>
-      <h1 class="site-main-title">ARCHIVOS DE LA AUSENCIA</h1>
-      <p class="site-main-subtitle">A 50 años del Golpe de Estado de 1976: Memoria, Verdad y Justicia</p>
-      <p style="font-size:0.9rem; color:#bbb; line-height:1.5;">Una exploración interactiva a través del archivo, el testimonio y el arte para reflexionar sobre nuestro pasado y nuestro presente.</p>
-    </div>
-  </section>
-
-  <!-- Índice Panel -->
-  <nav id="toc-panel" class="toc-panel">
-    <div class="toc-header">
-      <h3>ÍNDICE DE SECCIONES</h3>
-      <button id="btn-close-toc">&times;</button>
-    </div>
-    <ul class="toc-list" id="toc-list"></ul>
-  </nav>
-
-  <!-- SECCIÓN 1: REVISTA DIGITAL INTERACTIVA -->
-  <section id="revista" class="magazine-hero">
-    <div class="magazine-viewport">
-      <button id="btn-prev" class="flip-btn prev">❮</button>
-      <button id="btn-next" class="flip-btn next">❯</button>
-
-      <div class="flipbook-container" id="flipbook">
-
-        <!-- HOJA 1: PORTADA EXTERIOR -->
-        <div class="my-page --cover" data-density="hard">
-          <div class="cover-box">
-            <h1 class="cover-title">ARCHIVOS DE LA AUSENCIA</h1>
-            <p class="cover-subtitle">50 años después, la memoria sigue hablando</p>
-            <button class="btn-start-reading" id="btn-start">HOJEAR REVISTA ➔</button>
-          </div>
-        </div>
-
-        <!-- HOJA 2: ÍNDICE -->
-        <div class="my-page --left">
-          <div>
-            <span class="section-tag">SUMARIO</span>
-            <h2>Índice General</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <ol style="margin-left: 18px; line-height: 1.8;">
-                <li><a href="#" onclick="turnToPage(1); return false;">¿Qué es Archivos de la Ausencia?</a></li>
-                <li><a href="#" onclick="turnToPage(2); return false;">Memoria, Verdad y Justicia</a></li>
-                <li><a href="#" onclick="turnToPage(3); return false;">¿Qué pasó el 24 de Marzo de 1976?</a></li>
-                <li><a href="#" onclick="turnToPage(4); return false;">¿Qué fue el terrorismo de Estado?</a></li>
-                <li><a href="#" onclick="turnToPage(5); return false;">Línea de tiempo</a></li>
-                <li><a href="#" onclick="turnToPage(6); return false;">Voces que recuerdan</a></li>
-                <li><a href="#" onclick="turnToPage(7); return false;">Archivos</a></li>
-                <li><a href="#" onclick="turnToPage(8); return false;">¿Cómo puede el arte mantener viva la memoria?</a></li>
-                <li><a href="#" onclick="turnToPage(9); return false;">50 años después: ¿qué hacemos con la memoria?</a></li>
-                <li><a href="#" onclick="turnToPage(10); return false;">¿Qué es la democracia para nosotros?</a></li>
-                <li><a href="#" onclick="turnToPage(11); return false;">¿Cuánto conoces de nuestra historia?</a></li>
-                <li><a href="#" onclick="turnToPage(12); return false;">Reflexión final y Créditos</a></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 3: SECCIÓN 1 -->
-        <div class="my-page --right">
-          <div>
-            <span class="section-tag">SECCIÓN 01</span>
-            <h2>¿Qué es Archivos de la Ausencia?</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p><strong>Archivos de la Ausencia</strong> es un proyecto realizado por estudiantes de la FADYCC que busca acercar a las nuevas generaciones a la historia de la Última Dictadura Cívico-Militar Argentina, a 50 años del golpe de Estado de 1976.</p>
-              <p>Desde nuestra mirada como estudiantes y jóvenes, nos proponemos conocer, investigar y reflexionar sobre la memoria, recuperando historias, voces y huellas de nuestro pasado.</p>
-              <p>A través de fotografías, testimonios, archivos audiovisuales y arte, buscamos generar un espacio que no solo informe, sino que también invite a hacer preguntas y a construir nuevas formas de acercarnos a nuestra historia.</p>
-              <p><em>Porque recordar también es una forma de participar en el presente. Archivos de la Ausencia es nuestra manera de acercarnos a la memoria para conocer el pasado, comprender el presente y pensar el futuro.</em></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 4: SECCIÓN 2 -->
-        <div class="my-page --left">
-          <div>
-            <span class="section-tag">SECCIÓN 02</span>
-            <h2>Memoria, Verdad y Justicia</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p>Desde el año 2006, cada 24 de marzo se conmemora oficialmente en nuestro país el <strong>Día Nacional de la Memoria por la Verdad y la Justicia</strong> con el objetivo de:</p>
-              <ul class="bullet-list">
-                <li><strong>Ejercitar la Memoria:</strong> en tanto acto de recordar, reflexionar y concientizar colectivamente sobre las graves consecuencias económicas, sociales, políticas, jurídicas y culturales de la última dictadura cívico-militar;</li>
-                <li><strong>Ratificar las demandas:</strong> y profundizar la búsqueda de Verdad y Justicia respecto de las violaciones sistemáticas de los derechos humanos por parte de las Fuerzas Armadas y de Seguridad;</li>
-                <li><strong>Comprometer a la ciudadanía:</strong> en la defensa incondicional de los valores democráticos.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 5: SECCIÓN 3 -->
-        <div class="my-page --right">
-          <div>
-            <span class="section-tag">SECCIÓN 03</span>
-            <h2>¿Qué pasó el 24 de Marzo de 1976?</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p>El 24 de marzo de 1976 las Fuerzas Armadas argentinas encabezaron un golpe de Estado contra el gobierno constitucional de María Estela Martínez de Perón, quien había asumido la primera magistratura el 1 de julio de 1974, luego del fallecimiento del presidente Juan Domingo Perón.</p>
-              <p>Faltaban apenas algunos meses para la realización de elecciones libres, que habían sido adelantadas para octubre de 1976.</p>
-              <p>El gobierno fue asumido por una Junta Militar integrada por los jefes de las tres armas: Ejército, Armada y Aeronáutica, y las fuerzas de seguridad quedaron subordinadas a su conducción.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 6: SECCIÓN 4 (MAPA INTERACTIVO) -->
-        <div class="my-page --left">
-          <div>
-            <span class="section-tag">SECCIÓN 04</span>
-            <h2>¿Qué fue el terrorismo de Estado?</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p>Entre 1976-1983 miles de personas fueron secuestradas en centros de detención ilegal, asesinadas, desaparecidas o torturadas de manera systematic.</p>
-
-              <div class="interactive-map">
-                <span style="font-size:0.72rem; font-weight:bold; color:var(--accent);">MAPA INTERACTIVO DE SITIOS DE MEMORIA</span>
-                <div class="map-nodes" style="margin-top:5px;">
-                  <button class="map-node-btn" onclick="showMapNode('ESMA', 'Ex ESMA (Buenos Aires): Uno de los centros clandestinos de detención, tortura y exterminio más emblemáticos del país.')">📍 Ex ESMA (CABA)</button>
-                  <button class="map-node-btn" onclick="showMapNode('RI9', 'Regimiento de Infantería 9 (Corrientes): Funcionó como Centro Clandestino de Detención en la región del Nordeste.')">📍 Regimiento de Infantería 9 (Corrientes)</button>
-                  <button class="map-node-btn" onclick="showMapNode('La Perla', 'La Perla (Córdoba): Principal centro de detención clandestino del interior del país.')">📍 La Perla (Córdoba)</button>
-                </div>
-                <div id="map-info" class="map-info-box"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 7: SECCIÓN 5 -->
-        <div class="my-page --right">
-          <div>
-            <span class="section-tag">SECCIÓN 05</span>
-            <h2>Línea de Tiempo</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p><strong>Siete años que transformaron nuestra historia:</strong></p>
-              <div class="timeline-list">
-                <span class="timeline-year">1976</span>
-                <span class="timeline-year">1977</span>
-                <span class="timeline-year">1978</span>
-                <span class="timeline-year">1979</span>
-                <span class="timeline-year">1980</span>
-                <span class="timeline-year">1981</span>
-                <span class="timeline-year">1982</span>
-                <span class="timeline-year">1983</span>
-              </div>
-              <p style="margin-top:15px; font-style:italic; text-align:center;">Conocer lo que ocurrió nos permite comprender el pasado, reflexionar sobre el presente y pensar qué sociedad queremos construir hacia el futuro.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 8: SECCIÓN 6 (AUDIO PLAYER) -->
-        <div class="my-page --left">
-          <div>
-            <span class="section-tag">SECCIÓN 06</span>
-            <h2>Voces que recuerdan</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p><em>Testimonios de los familiares y relatos en primera persona.</em></p>
-              <p style="margin-top:10px; font-style:italic;">"Las palabras de quienes vivieron la ausencia y mantuvieron viva la búsqueda son el pilar fundamental de nuestra memoria colectiva."</p>
-
-              <div class="audio-player-card">
-                <button class="audio-play-btn" id="audio-toggle-btn" onclick="toggleAudioRecord()">▶</button>
-                <div>
-                  <div style="font-size:0.8rem; font-weight:bold; color:var(--gold);">ARCHIVO SONORO #01</div>
-                  <div style="font-size:0.72rem; color:#aaa;" id="audio-status-text">Toca para reproducir testimonio en audio</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 9: SECCIÓN 7 (GALERÍA MODAL) -->
-        <div class="my-page --right">
-          <div>
-            <span class="section-tag">SECCIÓN 07</span>
-            <h2>Archivos</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p style="font-size:0.8rem;">Haz clic en cada archivo para inspeccionar su ficha documental:</p>
-              <div class="archive-grid">
-                <div class="archive-item" onclick="openArchiveModal('Madres y Abuelas de Plaza de Mayo', 'Organizaciones de derechos humanos conformadas durante la dictadura para exigir la aparición con vida de sus hijos e hijas.')">📜 Madres y Abuelas</div>
-                <div class="archive-item" onclick="openArchiveModal('Marchas y Movilizaciones', 'Registros fotográficos de las históricas marchas de resistencia civil y reclamo de Justicia.')">📷 Marchas Históricas</div>
-                <div class="archive-item" onclick="openArchiveModal('Afiches y Pancartas', 'Expresiones gráficas, impresos y leyendas en la vía pública por la verdad.')">🖼️ Afiches y Pancartas</div>
-                <div class="archive-item" onclick="openArchiveModal('Espacios de Memoria', 'Centros ex clandestinos reconvertidos en espacios de pedagogía, arte y memoria activa.')">🏛️ Espacios de Memoria</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 10: SECCIÓN 8 -->
-        <div class="my-page --left">
-          <div>
-            <span class="section-tag">SECCIÓN 08</span>
-            <h2>¿Cómo puede el arte mantener viva la memoria?</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p>El arte puede convertirse en una forma de recordar, transmitir y generar preguntas sobre el pasado. A través de una imagen, una película, una canción, una obra o una fotografía, hechos históricos pueden llegar a nuevas generaciones desde una experiencia diferente.</p>
-              <p style="margin-top:15px; font-weight:bold; color:var(--accent);">Obra — Contexto — Significado</p>
-              <p><em>El arte no cambia lo que ocurrió, pero puede cambiar la manera en que lo recordamos, lo comprendemos y lo transmitimos.</em></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 11: SECCIÓN 9 -->
-        <div class="my-page --right">
-          <div>
-            <span class="section-tag">SECCIÓN 09</span>
-            <h2>50 años después: ¿qué hacemos con la memoria?</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p>Cincuenta años después del golpe de Estado, las nuevas generaciones tenemos la posibilidad y la responsabilidad de seguir construyendo memoria.</p>
-              <p>La memoria nos permite mirar hacia atrás para comprender el presente y pensar el futuro. Y la democracia nos invita a participar, expresarnos, escuchar otras voces y defender los derechos que forman parte de nuestra vida cotidiana.</p>
-              <p><strong>Porque la memoria no termina en un archivo. Continúa en cada persona que decide conocer, preguntar y recordar.</strong></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 12: SECCIÓN 10 (MURO COLABORATIVO) -->
-        <div class="my-page --left">
-          <div>
-            <span class="section-tag">SECCIÓN 10</span>
-            <h2>Muro de la Memoria</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <p style="font-size:0.8rem;">Deja tu mensaje o palabra sobre lo que significa la memoria para ti:</p>
-
-              <div class="wall-input-container">
-                <input type="text" id="wall-input" class="wall-input" placeholder="Escribe aquí tu mensaje..." maxlength="60">
-                <button class="wall-add-btn" onclick="addMemoryNote()">Publicar</button>
-              </div>
-
-              <div class="memory-wall" id="memory-wall">
-                <div class="memory-note">Nunca Más</div>
-                <div class="memory-note">Memoria Activa</div>
-                <div class="memory-note">Verdad y Justicia</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 13: SECCIÓN 11 (CUESTIONARIO) -->
-        <div class="my-page --right">
-          <div>
-            <span class="section-tag">SECCIÓN 11</span>
-            <h2>¿Cuánto conoces de nuestra historia?</h2>
-            <div class="divider"></div>
-            <div class="content-body">
-              <div class="quiz-item">
-                <div class="quiz-question">1. ¿En qué año se produjo el Golpe de Estado?</div>
-                <div class="quiz-options">
-                  <button onclick="checkQuiz(this, false)">1973</button>
-                  <button onclick="checkQuiz(this, true)">1976</button>
-                  <button onclick="checkQuiz(this, false)">1983</button>
-                </div>
-              </div>
-              <div class="quiz-item">
-                <div class="quiz-question">2. ¿Qué día se conmemora el Día de la Memoria?</div>
-                <div class="quiz-options">
-                  <button onclick="checkQuiz(this, true)">24 de Marzo</button>
-                  <button onclick="checkQuiz(this, false)">10 de Diciembre</button>
-                  <button onclick="checkQuiz(this, false)">25 de Mayo</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- HOJA 14: CONTRAPORTADA CON CREDITOS.JPG Y LISTA EN ORDEN EXACTO -->
-        <div class="my-page --back-cover" data-density="hard">
-          <div class="back-cover-container">
-            <img src="img/Creditos.jpg" alt="Créditos Archivos de la Ausencia" class="back-cover-img" onerror="this.style.display='none'">
-            <div class="back-cover-credits-box">
-              <h3 class="back-cover-credits-title">CRÉDITOS Y EQUIPO</h3>
-              <ul class="back-cover-team-list">
-                <li>1. Sabrina Navarro</li>
-                <li>2. Priscila Ayala</li>
-                <li>3. Brenda Videla</li>
-                <li>4. Mauricio Cohen</li>
-                <li>5. Santiago Vargas</li>
-                <li>6. Emilio Sánchez</li>
-              </ul>
-            </div>
-            <button class="btn-reopen" onclick="turnToPage(0)">VOLVER AL INICIO ↺</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <a href="#equipo" class="scroll-indicator">
-      CONOCE AL EQUIPO Y PROCESO DE TRABAJO
-      <span>▼</span>
-    </a>
-  </section>
-
-  <!-- SECCIÓN 2: EQUIPO DE TRABAJO (CONSERVA TUS TARJETAS Y FOTOS) -->
-  <section id="equipo" class="page-section">
-    <div class="section-title-wrapper">
-      <span class="section-subtitle">Realización Audiovisual & Web</span>
-      <h2 class="section-main-title">Equipo de Trabajo</h2>
-    </div>
-
-     <div class="team-grid">
-      <div class="team-card">
-        <img src="img/equipo1.jpg" alt="Foto Integrante" class="team-avatar" onerror="this.outerHTML='<div class=\'team-avatar\'>👤</div>'">
-        <h3 class="team-name">Sabrina Navarro</h3>
-        <p class="team-role">Direccion / Diseño Gráfico</p>
-      </div>
-
-      <div class="team-card">
-        <img src="img/equipo2.jpg" alt="Foto Integrante" class="team-avatar" onerror="this.outerHTML='<div class=\'team-avatar\'>👤</div>'">
-        <h3 class="team-name">Priscila Ayala</h3>
-        <p class="team-role">Producción / Realización Audiovisual</p>
-      </div>
-
-      <div class="team-card">
-        <img src="img/equipo3.jpg" alt="Foto Integrante" class="team-avatar" onerror="this.outerHTML='<div class=\'team-avatar\'>👤</div>'">
-        <h3 class="team-name">Brenda Videla</h3>
-        <p class="team-role">Realización Audiovisual</p>
-      </div>
-
-      <div class="team-card">
-        <img src="img/equipo4.jpg" alt="Foto Integrante" class="team-avatar" onerror="this.outerHTML='<div class=\'team-avatar\'>👤</div>'">
-        <h3 class="team-name">Mauricio Cohen</h3>
-        <p class="team-role">Arquitecto de la Información / Guión</p>
-      </div>
-
-      <div class="team-card">
-        <img src="img/equipo5.jpg" alt="Foto Integrante" class="team-avatar" onerror="this.outerHTML='<div class=\'team-avatar\'>👤</div>'">
-        <h3 class="team-name">Santiago Vargas</h3>
-        <p class="team-role">Contenido Textual / Investigación</p>
-      </div>
-
-      <div class="team-card">
-        <img src="img/equipo6.jpg" alt="Foto Integrante" class="team-avatar" onerror="this.outerHTML='<div class=\'team-avatar\'>👤</div>'">
-        <h3 class="team-name">Emilio Sanchez</h3>
-        <p class="team-role">Programación / Montaje</p>
-      </div>
-    </div>
-
-    <!-- Detrás de Escenas -->
-    <div class="behind-scenes-box">
-      <h3 style="font-family:'Cinzel', serif; color:var(--gold); font-size:1.3rem; margin-bottom:10px;">Detrás de Escenas</h3>
-      <p style="font-size:0.88rem; color:#ccc;">El proceso de investigación, recopilación de archivo y montaje de Archivos de la Ausencia realizado por los alumnos del Seminario III en la FADYCC - UNNE.</p>
-      
-      <div class="behind-scenes-grid">
-        <div class="bts-item">
-          <img src="img/bts1.jpg" alt="Investigación de Archivo" class="bts-img" onerror="this.outerHTML='<div class=\'bts-img\'>📂 Registro de Documentos</div>'">
-          <div class="bts-caption">Revisión e investigación de documentos históricos y registros de la época.</div>
-        </div>
-        <div class="bts-item">
-          <img src="img/bts2.jpg" alt="Grabación de Testimonios" class="bts-img" onerror="this.outerHTML='<div class=\'bts-img\'>🎙️ Grabación de Entrevistas</div>'">
-          <div class="bts-caption">Entrevistas y registro sonoro de voces que mantienen viva la memoria regional.</div>
-        </div>
-        <div class="bts-item">
-          <img src="img/bts3.jpg" alt="Diseño y Maquetación" class="bts-img" onerror="this.outerHTML='<div class=\'bts-img\'>💻 Desarrollo Multimedia</div>'">
-          <div class="bts-caption">Diseño interactivo y montaje de la revista digital para el Seminario III.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECCIÓN 3: REDES Y CONTACTO -->
-  <section id="contacto" class="page-section">
-    <div class="section-title-wrapper">
-      <span class="section-subtitle">Conéctate con Nosotros</span>
-      <h2 class="section-main-title">Redes & Contacto</h2>
-    </div>
-
-    <div class="social-cards-grid">
-      <a href="https://instagram.com" target="_blank" class="social-card">
-        <span class="social-icon">📸</span>
-        <span class="social-title">Instagram</span>
-        <span class="social-handle">@archivosdelaausencia</span>
-      </a>
-      <a href="https://youtube.com" target="_blank" class="social-card">
-        <span class="social-icon">🎥</span>
-        <span class="social-title">YouTube</span>
-        <span class="social-handle">Archivos de la Ausencia - FADYCC</span>
-      </a>
-      <a href="https://spotify.com" target="_blank" class="social-card">
-        <span class="social-icon">🎧</span>
-        <span class="social-title">Podcast</span>
-        <span class="social-handle">Voces de la Memoria</span>
-      </a>
-    </div>
-
-    <div class="contact-container">
-      <h3 style="font-family:'Cinzel', serif; color:var(--gold); text-align:center; margin-bottom:20px; font-size:1.2rem;">Déjanos tu Mensaje</h3>
-      <form onsubmit="handleFormSubmit(event)">
-        <div class="form-group">
-          <label>Nombre y Apellido</label>
-          <input type="text" class="form-control" placeholder="Tu nombre..." required>
-        </div>
-        <div class="form-group">
-          <label>Correo Electrónico</label>
-          <input type="email" class="form-control" placeholder="tu@email.com" required>
-        </div>
-        <div class="form-group">
-          <label>Mensaje o Comentario</label>
-          <textarea class="form-control" rows="4" placeholder="Escribe tu consulta o reflexión..." required></textarea>
-        </div>
-        <button type="submit" class="btn-submit">ENVIAR MENSAJE</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="magazine-footer">
-    <p>ARCHIVOS DE LA AUSENCIA — Proyecto Académico FADYCC (UNNE)</p>
-    <p style="font-size:0.75rem; color:#777; margin-top:5px;">A 50 Años del Golpe de Estado de 1976 — Memoria, Verdad y Justicia</p>
-  </footer>
-
-  <!-- MODAL DE ARCHIVOS / DOCUMENTOS -->
-  <div id="archive-modal" class="modal-overlay">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeArchiveModal()">&times;</button>
-      <h3 id="modal-title" style="font-family:'Cinzel', serif; color:var(--gold); margin-bottom:10px;"></h3>
-      <p id="modal-desc" style="font-size:0.88rem; line-height:1.6; color:#ddd;"></p>
-    </div>
-  </div>
-
-  <script>
-    let pageFlip = null;
-
-    document.addEventListener("DOMContentLoaded", function() {
-      // Inicializar PageFlip
-      pageFlip = new St.PageFlip(document.getElementById("flipbook"), {
-        width: 450,
-        height: 600,
-        size: "fixed",
-        minWidth: 300,
-        maxWidth: 1000,
-        minHeight: 400,
-        maxHeight: 800,
-        maxShadowOpacity: 0.8,
-        showCover: true,
-        mobileScrollSupport: false
-      });
-
-      pageFlip.loadFromHTML(document.querySelectorAll(".my-page"));
-
-      // Eventos de botones de navegación de la revista
-      document.getElementById("btn-prev").addEventListener("click", () => pageFlip.flipPrev());
-      document.getElementById("btn-next").addEventListener("click", () => pageFlip.flipNext());
-      document.getElementById("btn-start").addEventListener("click", () => pageFlip.flipNext());
-
-      // Construir Índice Panel dinámico
-      const tocList = document.getElementById("toc-list");
-      const pages = document.querySelectorAll(".my-page");
-      pages.forEach((page, index) => {
-        const titleEl = page.querySelector("h2");
-        if (titleEl) {
-          const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.href = "#";
-          a.textContent = `${index}. ${titleEl.textContent}`;
-          a.onclick = (e) => {
-            e.preventDefault();
-            turnToPage(index);
-            closeTOC();
-          };
-          li.appendChild(a);
-          tocList.appendChild(li);
-        }
-      });
-
-      // Controles del Panel TOC
-      document.getElementById("btn-toc").addEventListener("click", () => {
-        document.getElementById("toc-panel").classList.toggle("active");
-      });
-      document.getElementById("btn-close-toc").addEventListener("click", closeTOC);
-
-      // Pantalla Completa
-      document.getElementById("btn-fullscreen").addEventListener("click", () => {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(err => alert(err.message));
-        } else {
-          document.exitFullscreen();
-        }
-      });
-    });
-
-    function turnToPage(pageNum) {
-      if (pageFlip) pageFlip.turnToPage(pageNum);
-    }
-
-    function closeTOC() {
-      document.getElementById("toc-panel").classList.remove("active");
-    }
-
-    // Mapa Interactivo
-    function showMapNode(title, info) {
-      const box = document.getElementById("map-info");
-      box.style.display = "block";
-      box.innerHTML = `<strong>${title}:</strong> ${info}`;
-    }
-
-    // Modal de Archivos
-    function openArchiveModal(title, desc) {
-      document.getElementById("modal-title").textContent = title;
-      document.getElementById("modal-desc").textContent = desc;
-      document.getElementById("archive-modal").style.display = "flex";
-    }
-
-    function closeArchiveModal() {
-      document.getElementById("archive-modal").style.display = "none";
-    }
-
-    // Muro de la memoria
-    function addMemoryNote() {
-      const input = document.getElementById("wall-input");
-      const text = input.value.trim();
-      if (text) {
-        const wall = document.getElementById("memory-wall");
-        const note = document.createElement("div");
-        note.className = "memory-note";
-        note.textContent = text;
-        wall.insertBefore(note, wall.firstChild);
-        input.value = "";
-      }
-    }
-
-    // Cuestionario
-    function checkQuiz(btn, isCorrect) {
-      const parent = btn.parentElement;
-      const buttons = parent.querySelectorAll("button");
-      buttons.forEach(b => b.disabled = true);
-      if (isCorrect) {
-        btn.classList.add("correct");
-      } else {
-        btn.classList.add("wrong");
-      }
-    }
-
-    // Toggle de Audio
-    let isPlayingAudio = false;
-    function toggleAudioRecord() {
-      const btn = document.getElementById("audio-toggle-btn");
-      const status = document.getElementById("audio-status-text");
-      isPlayingAudio = !isPlayingAudio;
-      if (isPlayingAudio) {
-        btn.textContent = "⏸";
-        status.textContent = "Reproduciendo testimonio de audio...";
-      } else {
-        btn.textContent = "▶";
-        status.textContent = "Toca para reproducir testimonio en audio";
-      }
-    }
-
-    // Formulario de contacto
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      alert("¡Gracias por tu mensaje! Ha sido recibido correctamente.");
-      e.target.reset();
-    }
-  </script>
-</body>
-</html>
+      border-bottom: 3px solid var(--gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    } 
