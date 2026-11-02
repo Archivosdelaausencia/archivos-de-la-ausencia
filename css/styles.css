@@ -180,7 +180,7 @@ body {
 
 /* Estilos de las Hojas con fondo.jpg dentro de img/ */
 .my-page {
-  background-image: url('../img/fondo.jpg');
+  background-image: url('../img/hoja pagina derecha.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
