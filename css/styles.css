@@ -180,12 +180,12 @@ body {
 
 /* Estilos de las Hojas con fondo.jpg dentro de img/ */
 .my-page {
-  background-image: url('../img/hoja pagina derecha.jpg');
-  background-size: cover;
+  background-image: url('../img/fondo.jpg');
+  background-size: 130% auto;
   background-position: center;
   background-repeat: no-repeat;
   color: var(--paper-text);
-  padding: 35px 40px;
+  padding: 75px 50px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -349,11 +349,15 @@ h2 {
 
 .content-body {
   font-family: 'Merriweather', serif;
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.68rem;   /* Reducido para que entre más texto (antes estaba en 0.88rem) */
+  line-height: 1.45;    /* Compacta un poco el espacio vertical entre renglones */
   color: #222;
 }
 
+.content-body p { 
+  margin-bottom: 6px;   /* Reduce el espacio entre párrafos para ganar lugar */
+  text-align: justify; 
+}
 .content-body p { margin-bottom: 10px; text-align: justify; }
 
 .bullet-list { list-style: none; margin: 8px 0; }
