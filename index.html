@@ -62,13 +62,8 @@
 
       <div class="flipbook-container" id="flipbook">
 
-        <!-- HOJA 1: PORTADA EXTERIOR -->
+     <!-- HOJA 1: PORTADA EXTERIOR -->
         <div class="my-page --cover" data-density="hard">
-          <div class="cover-box">
-            <h1 class="cover-title">ARCHIVOS DE LA AUSENCIA</h1>
-            <p class="cover-subtitle">50 años después, la memoria sigue hablando</p>
-            <button class="btn-start-reading" id="btn-start">HOJEAR REVISTA ➔</button>
-          </div>
         </div>
 
         <!-- HOJA 2: ÍNDICE -->
@@ -127,11 +122,18 @@
           </div>
 
         </div>
+<!-- HOJA: TÍTULO DESTACADO CENTRADO GIGANTE (MÁS CLARO Y VISIBLE) -->
+        <div class="my-page --right" style="display: flex; justify-content: center !important; align-items: center !important; text-align: center; position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; background-color: #1a1a1a;">
+          
+          <!-- Imagen de fondo con etiqueta img -->
+          <img src="img/quepaso.jpg" alt="Fondo Qué pasó el 24 de marzo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; display: block;">
 
-    <!-- HOJA: TÍTULO DESTACADO CENTRADO GIGANTE -->
-        <div class="my-page --right" style="justify-content: center !important; align-items: center !important; text-align: center;">
-          <div style="width: 100%;">
-            <h2 style="font-family: 'Cinzel', serif; font-size: 3.5rem; line-height: 1.15; color: var(--accent); letter-spacing: 3px; font-weight: 900; margin: 0; text-transform: uppercase;">
+          <!-- Capa oscura más suave (ahora deja pasar más luz de la foto) -->
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); z-index: 2;"></div>
+
+          <!-- Contenedor del Título Gigante -->
+          <div style="width: 100%; position: relative; z-index: 3; padding: 20px; display: flex; justify-content: center; align-items: center;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 1.15; color: #a41623; text-shadow: 0 0 10px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.9); font-weight: 400; margin: 0; text-transform: uppercase; text-align: center;">
               <br>
               ¿QUE<br>
               PASO EL<br>
@@ -139,47 +141,78 @@
               MARZO?
             </h2>
           </div>
+
         </div>
 
-  <!-- HOJA: ¿QUÉ PASÓ EL 24 DE MARZO? (TEXTO E IMAGEN AJUSTADOS) -->
-        <div class="my-page --left" style="box-sizing: border-box; height: 100%; overflow: hidden; padding: 20px;">
-          
-          <div style="display: table; width: 100%; height: 100%; table-layout: fixed;">
-            
-            <!-- Columna Izquierda: Texto más grande (50% de ancho) -->
-            <div style="display: table-cell; width: 50%; vertical-align: middle; padding-right: 10px; box-sizing: border-box;">
-              <div class="content-body" style="font-size: 0.70rem; line-height: 1.35;">
-                <p style="text-align: justify; margin-bottom: 8px;">El 24 de marzo de 1976 las Fuerzas Armadas argentinas encabezaron un golpe de Estado contra el gobierno constitucional de María Estela Martínez de Perón, quien había asumido la primera magistratura el 1 de julio de 1974, luego del fallecimiento del presidente Juan Domingo Perón. Faltaban apenas algunos meses para la realización de elecciones libres, que habían sido adelantadas para octubre de 1976. El gobierno fue asumido por una Junta Militar integrada por los jefes de las tres armas: Ejército, Armada y Aeronáutica, y las fuerzas de seguridad quedaron subordinadas a su conducción.</p>
-                
-                <h3 style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--accent); margin-top: 10px; margin-bottom: 6px; font-weight: 700;">¿Qué fue el terrorismo de estado?</h3>
-                
-                <p style="text-align: justify; margin: 0;">Entre 1976-1983 miles de personas fueron secuestradas en centros de detención ilegal, asesinadas, desaparecidas o torturadas de manera sistemática.</p>
-              </div>
-            </div>
+  <!-- HOJA: ¿QUÉ PASÓ EL 24 DE MARZO? (DOS IMÁGENES DERECHA) -->
+<div class="my-page --left" style="box-sizing: border-box; height: 100%; overflow: hidden; padding: 20px; position: relative;">
+  
+  <div style="display: flex; width: 100%; height: 100%; gap: 15px; align-items: center;">
+    
+    <!-- Columna Izquierda: Texto (50% de ancho) -->
+    <div style="width: 50%; box-sizing: border-box;">
+      <div class="content-body" style="font-size: 0.70rem; line-height: 1.35;">
+        <p style="text-align: justify; margin-bottom: 8px;">El 24 de marzo de 1976 las Fuerzas Armadas argentinas encabezaron un golpe de Estado contra el gobierno constitucional de María Estela Martínez de Perón, quien había asumido la primera magistratura el 1 de julio de 1974, luego del fallecimiento del presidente Juan Domingo Perón. Faltaban apenas algunos meses para la realización de elecciones libres, que habían sido adelantadas para octubre de 1976. El gobierno fue asumido por una Junta Militar integrada por los jefes de las tres armas: Ejército, Armada y Aeronáutica, y las fuerzas de seguridad quedaron subordinadas a su conducción.</p>
+        
+        <h3 style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--accent); margin-top: 10px; margin-bottom: 6px; font-weight: 700;">¿Qué fue el terrorismo de estado?</h3>
+        
+        <p style="text-align: justify; margin: 0;">Entre 1976-1983 miles de personas fueron secuestradas en centros de detención ilegal, asesinadas, desaparecidas o torturadas de manera sistemática.</p>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Las dos imágenes apiladas (50% de ancho) -->
+    <div style="width: 50%; display: flex; flex-direction: column; gap: 12px; justify-content: center; box-sizing: border-box;">
+      
+<!-- FOTO DE ARRIBA: POLAROID MÁS GRANDE Y MÁS ARRIBA (Sin inclinación) -->
+  <div style="position: absolute; right: 25px; top: 25px; width: 42%; background: #fff; padding: 8px 8px 24px 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.35); border-radius: 2px; z-index: 20; box-sizing: border-box;">
+    <img src="img/desaparecidos.jpg" alt="Desaparecidos - Polaroid Superior" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+  </div>
+
+</div>
 <!-- FOTO DE ABAJO (Inclinación de 15°, por debajo) -->
+
           <div style="position: absolute; right: -10px; bottom: 15px; width: 44%; background: #fff; padding: 5px 5px 18px 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transform: rotate(15deg); border-radius: 2px; z-index: 5;">
+
             <img src="img/nuevogobierno.jpg" alt="Nuevo Gobierno 1976 - Fondo" style="width: 100%; height: 150px; object-fit: cover; display: block;">
+
           </div>
+
+
 
           <!-- FOTO DE ARRIBA (Inclinación de 5°, tal como la teníamos) -->
+
           <div style="position: absolute; right: -15px; bottom: 30px; width: 45%; background: #fff; padding: 5px 5px 18px 5px; box-shadow: 0 6px 16px rgba(0,0,0,0.35); transform: rotate(5deg); border-radius: 2px; z-index: 10;">
+
             <img src="img/nuevogobierno.jpg" alt="Nuevo Gobierno 1976 - Frente" style="width: 100%; height: 155px; object-fit: cover; display: block;">
+
           </div>
 
-        </div>
+
+
         </div>
 
-        <!-- HOJA: TÍTULO INCLINADO LEÓN FERRARI -->
-        <div class="my-page --right" style="justify-content: center !important; align-items: center !important; text-align: center; overflow: hidden;">
-          <div style="transform: rotate(-15deg); transform-origin: center; width: 100%;">
-            <h2 style="font-family: 'Cinzel', serif; font-size: 2.4rem; line-height: 1.2; color: var(--accent); font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 2px;">
+        </div> 
+
+ <!-- HOJA: TÍTULO INCLINADO LEÓN FERRARI (CURSIVA SÓLO EN LEON FERRARI) -->
+        <div class="my-page --right" style="display: flex; justify-content: center !important; align-items: center !important; text-align: center; position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; background-color: #1a1a1a;">
+          
+          <!-- Imagen de fondo con etiqueta img -->
+          <img src="img/leonferrarihoja.jpg" alt="Fondo León Ferrari" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; display: block;">
+
+          <!-- Capa clara/translúcida para suavizar la foto y que el texto negro resalte -->
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.3); z-index: 2;"></div>
+
+          <!-- Contenedor con la inclinación intacta -->
+          <div style="position: relative; z-index: 3; transform: rotate(-15deg); transform-origin: center; width: 100%; padding: 20px;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.4rem; line-height: 1.2; color: #000000; text-shadow: 0 0 8px rgba(255,255,255,0.8); margin: 0; text-transform: uppercase; letter-spacing: 2px;">
               <br>
-              Obras de León Ferrari<br>
-              <span style="font-size: 2.5rem; display: block; margin-top: 10px;">“Nunca Más”</span>
+              <span style="font-weight: 700; font-style: normal;">OBRAS DE</span><br>
+              <span style="font-weight: 400; font-style: italic;">LEÓN FERRARI</span><br>
+              <span style="font-size: 2.5rem; display: block; margin-top: 10px; font-weight: 700; font-style: normal;">“NUNCA MAS”</span>
             </h2>
           </div>
-        </div>
 
+        </div>
        <!-- HOJA: LEÓN FERRARI (DISEÑO ESCALONADO CON FOTOS INCLINADAS) -->
         <div class="my-page --left" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; padding: 30px 20px; box-sizing: border-box; overflow: hidden;">
           
@@ -223,31 +256,30 @@
 
         </div>  
 
-<!-- HOJA: GALERÍA DE IMÁGENES (2 PARALELAS ARRIBA + 1 HORIZONTAL ABAJO) -->
-        <div class="my-page --right" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; padding: 25px 20px; box-sizing: border-box; overflow: hidden;">
+<!-- HOJA: GALERÍA DE IMÁGENES (CUBRE 100% SIN ESPACIOS) -->
+        <div class="my-page --right" style="position: relative; width: 100%; height: 100%; padding: 0 !important; margin: 0 !important; overflow: hidden; background-color: #000;">
           
-          <!-- SECCIÓN SUPERIOR: 2 Imágenes paralelas (Ocupa la mitad superior) -->
-          <div style="display: flex; flex-direction: row; gap: 15px; width: 100%; height: 48%; align-items: center; justify-content: space-between;">
+          <!-- SECCIÓN SUPERIOR (50% de alto) -->
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 50%; display: flex;">
             
-            <!-- Imagen Paralela 1 (Izquierda) -->
-            <div style="width: 50%; height: 100%; background: #fff; padding: 4px 4px 14px 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transform: rotate(0deg); border-radius: 2px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <!-- Imagen 1 (Izquierda) -->
+            <div style="width: 50%; height: 100%;">
               <img src="img/imagenhoja9.jpg" alt="Galería 1" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </div>
 
-            <!-- Imagen Paralela 2 (Derecha) -->
-            <div style="width: 50%; height: 100%; background: #fff; padding: 4px 4px 14px 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transform: rotate(0deg); border-radius: 2px; box-sizing: border-box; display: flex; align-items: center; justify-content: center;">
+            <!-- Imagen 2 (Derecha) -->
+            <div style="width: 50%; height: 100%;">
               <img src="img/imagenhoja7a.jpg" alt="Galería 2" style="width: 100%; height: 100%; object-fit: cover; display: block;">
             </div>
 
           </div>
 
-          <!-- SECCIÓN INFERIOR: 1 Imagen Horizontal (Ocupa el resto de la página abajo) -->
-          <div style="width: 100%; height: 46%; background: #fff; padding: 5px 5px 16px 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transform: rotate(-1deg); border-radius: 2px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; margin-top: 5px;">
-            <img src="img/imagenhoja9a.jpg" alt="Galería Inferior Horizontal" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <!-- SECCIÓN INFERIOR (50% de alto restante, pegada abajo) -->
+          <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%;">
+            <img src="img/imagenhoja9a.jpg" alt="Galería Inferior" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
 
         </div>
-
        <!-- HOJA: TÍTULO DESTACADO HISTORIAS QUE NO DEBEN OLVIDARSE (CON IMG SRC) -->
         <div class="my-page --left" style="display: flex; justify-content: center !important; align-items: center !important; text-align: center; position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; background-color: #1a1a1a;">
           
@@ -318,13 +350,6 @@
           <div style="position: relative; z-index: 3;"></div>
 
         </div>
-          <!-- Bloque Inferior Derecha: Espacio reservado para imagen -->
-          <div style="width: 100%; display: flex; justify-content: flex-end; align-items: flex-end; height: 55%;">
-            <div style="width: 75%; height: 100%; border: 1px dashed #ccc; display: flex; align-items: center; justify-content: center; border-radius: 6px;">
-              <!-- <img src="img/sonido-epoca.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;"> -->
-            </div>
-          </div>
-
         </div>
 
         <!-- HOJA: CENSURA EN LA MÚSICA (TEXTO JUSTIFICADO Y VIDEO) -->
@@ -408,76 +433,104 @@
 
         </div>
 
-        <!-- HOJA: TÍTULO "NOSOTROS NO SABÍAMOS" (CON FONDO DE IMAGEN) -->
+      <!-- HOJA: TÍTULO "NOSOTROS NO SABÍAMOS" (DISTRIBUCIÓN DE LÍNEAS AJUSTADA) -->
         <div class="my-page --left" style="display: flex; justify-content: center !important; align-items: center !important; text-align: center; position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden; background-color: #1a1a1a;">
           
-          <!-- Imagen de fondo con etiqueta img -->
+          <!-- Imagen de fondo con etiqueta img (Clara) -->
           <img src="img/nosabiamos.jpg" alt="Fondo Nosotros no sabíamos" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; display: block;">
 
-          <!-- Capa oscura semitransparente para que el texto resalte sobre la foto -->
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); z-index: 2;"></div>
+          <!-- Capa oscura muy sutil -->
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.10); z-index: 2;"></div>
 
-          <!-- Contenedor del Título -->
-          <div style="width: 100%; position: relative; z-index: 3; padding: 20px;">
-            <h2 style="font-family: 'Cinzel', serif; font-size: 2.8rem; line-height: 1.25; color: var(--accent); text-shadow: 2px 2px 8px rgba(0,0,0,0.9); letter-spacing: 2px; font-weight: 900; margin: 0; text-transform: uppercase;">
+          <!-- Contenedor general abajo y con la rotación -->
+          <div style="width: 100%; position: relative; z-index: 3; padding: 20px; transform: rotate(-14deg); transform-origin: center; margin-top: 120px;">
+            
+            <!-- Título principal con salto de línea reajustado -->
+            <h2 style="font-family: 'Cinzel', serif; font-size: 2.0rem; line-height: 1.3; color: var(--accent); text-shadow: 2px 2px 8px rgba(0,0,0,0.9); letter-spacing: 2px; font-weight: 900; margin: 0; text-transform: uppercase;">
               “Nosotros no<br>
               sabíamos”
             </h2>
+
+            <!-- Firma hacia la derecha, cerca del título -->
+            <div style="text-align: right; width: 80%; margin-top: 8px; margin-left: auto; margin-right: auto;">
+              <span style="font-family: 'Playfair Display', serif; font-size: 0.9rem; color: #ffffff; text-shadow: 1px 1px 6px rgba(0,0,0,0.9); font-style: italic; letter-spacing: 1px; font-weight: 700;">
+                DE LEÓN FERRARI
+              </span>
+            </div>
+
           </div>
 
         </div>
-
-        <!-- HOJA: NOSOTROS NO SABÍAMOS (TEXTO ARRIBA Y ESPACIO PARA IMÁGENES ABAJO) -->
-        <div class="my-page --right" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; box-sizing: border-box;">
+<!-- HOJA: NOSOTROS NO SABÍAMOS (TEXTO ARRIBA + IMAGEN PILAR.JPG SIN POLAROID + ENLACE) -->
+        <div class="my-page --right" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; padding: 20px; box-sizing: border-box; overflow: hidden;">
           
-          <!-- Texto Superior -->
-          <div>
-            <span class="section-tag">LEÓN FERRARI</span>
-            <div class="content-body" style="font-size: 0.74rem; line-height: 1.4; margin-top: 8px;">
+          <!-- SECCIÓN SUPERIOR: Texto descriptivo -->
+          <div style="flex-shrink: 0;">
+            <div class="content-body" style="font-size: 0.74rem; line-height: 1.4;">
               <p style="text-align: justify; margin-bottom: 8px;">En la serie “Nosotros no sabíamos”, León Ferrari recopiló artículos que los periódicos de 1976 publicaron sobre la primera época de la represión desatada por la junta militar.</p>
-              <p style="text-align: justify;">En estos recortes, publicados en su mayoría como noticias policiales, los crímenes cometidos por las Fuerzas Armadas se hacen visibles: cuerpos que aparecían cerca del río o en descampados, personas que buscaban familiares perdidos, refugiados en las embajadas. “Son las noticias que lograron pasar el tamiz de la censura, o que se dejaron pasar como mensajeras del terror”, escribió Ferrari sobre esta serie en 1992.</p>
+              <p style="text-align: justify; margin-bottom: 10px;">En estos recortes, publicados en su mayoría como noticias policiales, los crímenes cometidos por las Fuerzas Armadas se hacen visibles: cuerpos que aparecían cerca del río o en descampados, personas que buscaban familiares perdidos, refugiados en las embajadas. “Son las noticias que lograron pasar el tamiz de la censura, o que se dejaron pasar como mensajeras del terror”, escribió Ferrari sobre esta serie en 1992.</p>
+              
+              <!-- Enlace al documento PDF oficial -->
+              <p style="text-align: center; margin: 0;">
+                <a href="https://media.bellasartes.gob.ar/h/Nosotros_no_sabiamos_web.pdf" target="_blank" style="font-family: 'Playfair Display', serif; font-size: 0.75rem; color: var(--accent, #a41623); text-decoration: underline; font-style: italic;">
+                  Ver documento original (Bellas Artes)
+                </a>
+              </p>
             </div>
           </div>
+
+          <!-- SECCIÓN INFERIOR: Imagen pilar.jpg a sangre (sin estilo polaroid) -->
+          <div style="width: 100%; flex-grow: 1; min-height: 0; margin-top: 12px; overflow: hidden; border-radius: 0px; box-sizing: border-box; display: flex;">
+            <img src="img/pilar.jpg" alt="Nosotros no sabíamos - Pilar" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+
+
 
           <!-- Espacio Inferior Reservado para Imágenes -->
           <div style="width: 100%; height: 42%; border: 1px dashed #ccc; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-top: 10px;">
             <!-- <img src="img/nosotros-no-sabiamos.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;"> -->
           </div>
 
-        </div>
-
-        <!-- HOJA: CIERRE Y MEMORIA -->
-        <div class="my-page --left" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; box-sizing: border-box; padding-top: 40px; padding-bottom: 40px;">
+       <!-- HOJA: CIERRE Y MEMORIA (UBICACIÓN UN POCO MÁS ARRIBA) -->
+        <div class="my-page --left" style="position: relative; display: flex; flex-direction: column; justify-content: flex-start; height: 100%; box-sizing: border-box; padding: 30px 30px 20px 30px; overflow: hidden; background-color: #1a1a1a;">
           
-          <!-- Bloque Superior / Texto Principal -->
-          <div>
-            <span class="section-tag">REFLEXIÓN FINAL</span>
-            <div class="content-body" style="font-size: 0.8rem; line-height: 1.5; margin-top: 15px;">
-              <p style="text-align: justify; margin-bottom: 12px;">Cada historia, cada obra y cada testimonio nos recuerda que la memoria sigue viva.</p>
-              <p style="text-align: justify; margin-bottom: 12px;">Recordar es mantener presentes a quienes ya no están y aprender de nuestro pasado.</p>
-              <p style="text-align: justify;">Por quienes ya no están, por quienes siguen buscando y por las generaciones que merecen vivir en libertad.</p>
+          <!-- Imagen de fondo limpia tal cual la foto -->
+          <img src="img/final.jpg" alt="Fondo Reflexión Final" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; display: block;">
+
+          <!-- CONTENIDO GENERAL (z-index 2 para quedar por encima de la foto) -->
+          <div style="position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; margin-top: 90px;">
+            
+            <!-- Bloque Superior / Título y Texto -->
+            <div>
+              <span class="section-tag" style="color: #111; background: rgba(255,255,255,0.6); padding: 2px 6px;">REFLEXIÓN FINAL</span>
+              <div class="content-body" style="font-size: 0.8rem; line-height: 1.5; margin-top: 15px; color: #000; text-shadow: 1px 1px 3px rgba(255,255,255,0.8); font-weight: 600;">
+                <p style="text-align: justify; margin-bottom: 12px;">Cada historia, cada obra y cada testimonio nos recuerda que la memoria sigue viva.</p>
+                <p style="text-align: justify; margin-bottom: 12px;">Recordar es mantener presentes a quienes ya no están y aprender de nuestro pasado.</p>
+                <p style="text-align: justify;">Por quienes ya no están, por quienes siguen buscando y por las generaciones que merecen vivir en libertad.</p>
+              </div>
             </div>
-          </div>
 
-          <div class="divider" style="margin: 20px 0;"></div>
+            <!-- Bloque Inferior con la línea y el mensaje más cerca -->
+            <div style="margin-bottom: 35px;">
+              <div class="divider" style="margin: 12px 0; border-color: rgba(0, 0, 0, 0.3);"></div>
+              <div style="text-align: center;">
+                <p style="font-family: 'Cinzel', serif; font-size: 1.05rem; color: #000; font-weight: 700; letter-spacing: 1px; margin: 0; text-shadow: 1px 1px 4px rgba(255,255,255,0.9);">
+                  Gracias por ser parte de este recorrido.
+                </p>
+              </div>
+            </div>
 
-          <!-- Mensaje Final Centrado -->
-          <div style="text-align: center; margin-bottom: 20px;">
-            <p style="font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--accent); font-weight: 700; letter-spacing: 1px; margin: 0;">
-              Gracias por ser parte de este recorrido.
-            </p>
           </div>
 
         </div>
 
-     <!-- HOJA: CONTRAPORTADA -->
-        <div class="my-page --right" style="padding: 0 !important; margin: 0 !important; overflow: hidden; width: 100%; height: 100%;">
-          <img src="img/contraportada.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+   <!-- HOJA: CONTRAPORTADA (IMAGEN A PANTALLA COMPLETA) -->
+        <div class="my-page --right" style="position: relative; width: 100%; height: 100%; padding: 0 !important; margin: 0 !important; overflow: hidden; background-color: #1a1a1a;">
+          <img src="img/contraportada.jpg" alt="Contraportada" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block; z-index: 1;">
         </div>
 
     <a href="#equipo" class="scroll-indicator">
       CONOCE AL EQUIPO Y PROCESO DE TRABAJO
-      <span>▼</span>
     </a>
   </section>
 
