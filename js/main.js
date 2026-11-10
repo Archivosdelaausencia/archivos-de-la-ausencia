@@ -74,4 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-});
+}); // <--- Cierra el addEventListener de DOMContentLoaded
+
+// 4. Control de reproducción / pausa del Audio 3D (fuera del DOMContentLoaded para que la función sea global y la detecte el botón HTML)
+let isPlayingAudio = false;
+
+function toggleAudio3D() {
+  const iframe = document.getElementById('audio3d-player');
+  const btn = document.getElementById('btn-play-audio3d');
+
+  if (!isPlayingAudio) {
+    // Mandar comando de play vía YouTube JS API
+    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    btn.innerHTML = '⏸ Pausar Audio 3D';
+    btn.style.background = '#a00000';
+    isPlayingAudio = true;
+  } else {
+    // Mandar comando de pause vía YouTube JS API
+    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    btn.innerHTML = '▶ Reproducir Audio 3D';
+    btn.style.background = 'var(--accent)';
+    isPlayingAudio = false;
+  }
+}
