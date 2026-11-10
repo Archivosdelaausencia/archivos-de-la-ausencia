@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 }); // <--- Cierra el addEventListener de DOMContentLoaded
 
-// 4. Control de reproducción / pausa del Audio 3D (fuera del DOMContentLoaded para que la función sea global y la detecte el botón HTML)
+// Control de reproducción / pausa del Audio 3D
 let isPlayingAudio = false;
 
 function toggleAudio3D() {
