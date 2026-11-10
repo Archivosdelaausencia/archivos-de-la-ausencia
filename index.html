@@ -579,25 +579,174 @@
       </div>
     </div>
 
-    <!-- Detrás de Escenas -->
-    <div class="behind-scenes-box">
-      <h3 style="font-family:'Cinzel', serif; color:var(--gold); font-size:1.3rem; margin-bottom:10px;">Detrás de Escenas</h3>
-      <p style="font-size:0.88rem; color:#ccc;">El proceso de investigación, recopilación de archivo y montaje de Archivos de la Ausencia realizado por los alumnos del Seminario III en la FADYCC - UNNE.</p>
+    <!-- SECCIÓN INTEGRADA: ARCHIVOS, ENTREVISTAS Y AUDIO 3D -->
+    <div class="behind-scenes-box" style="padding: 20px;">
       
-      <div class="behind-scenes-grid">
-        <div class="bts-item">
-          <img src="img/bts1.jpg" alt="Investigación de Archivo" class="bts-img" onerror="this.src='https://via.placeholder.com/300x180?text=Archivo'">
-          <div class="bts-caption">Revisión e investigación de documentos históricos y registros de la época.</div>
-        </div>
-        <div class="bts-item">
-          <img src="img/bts2.jpg" alt="Grabación de Testimonios" class="bts-img" onerror="this.src='https://via.placeholder.com/300x180?text=Entrevistas'">
-          <div class="bts-caption">Entrevistas y registro sonoro de voces que mantienen viva la memoria regional.</div>
-        </div>
-        <div class="bts-item">
-          <img src="img/bts3.jpg" alt="Diseño y Maquetación" class="bts-img" onerror="this.src='https://via.placeholder.com/300x180?text=Desarrollo'">
-          <div class="bts-caption">Diseño interactivo y montaje de la revista digital para el Seminario III.</div>
+      <!-- PARTE 1: GALERÍA DE ARCHIVOS CON VISOR MODAL (20 FOTOS) -->
+      <div style="margin-bottom: 35px;">
+        <h3 style="font-family:'Cinzel', serif; color:var(--gold); font-size:1.3rem; margin-bottom:10px;">Archivos - Galería</h3>
+        <p style="font-size:0.88rem; color:#ccc; margin-bottom: 15px;">Registros y documentos históricos. Haz clic en una imagen para ampliar y navegar.</p>
+        
+        <!-- Muestra solo las primeras imágenes como vista previa de la galería -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;">
+          <div class="bts-item" style="overflow: hidden; border-radius: 4px; border: 1px solid var(--card-border); cursor: pointer;" onclick="openGallery(1)">
+            <img src="img/galeria1.jpg" alt="Archivo 1" class="bts-img" style="width: 100%; height: 110px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x180?text=Galeria+1'">
+          </div>
+          <div class="bts-item" style="overflow: hidden; border-radius: 4px; border: 1px solid var(--card-border); cursor: pointer;" onclick="openGallery(2)">
+            <img src="img/galeria2.jpg" alt="Archivo 2" class="bts-img" style="width: 100%; height: 110px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x180?text=Galeria+2'">
+          </div>
+          <div class="bts-item" style="overflow: hidden; border-radius: 4px; border: 1px solid var(--card-border); cursor: pointer;" onclick="openGallery(3)">
+            <img src="img/galeria3.jpg" alt="Archivo 3" class="bts-img" style="width: 100%; height: 110px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x180?text=Galeria+3'">
+          </div>
+          <div class="bts-item" style="overflow: hidden; border-radius: 4px; border: 1px solid var(--card-border); cursor: pointer;" onclick="openGallery(4)">
+            <img src="img/galeria4.jpg" alt="Archivo 4" class="bts-img" style="width: 100%; height: 110px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x180?text=Galeria+4'">
+          </div>
+          
+          <!-- Botón o tarjeta para abrir la colección completa -->
+          <div class="bts-item" onclick="openGallery(1)" style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(212, 175, 55, 0.1); border: 1px dashed var(--gold); border-radius: 4px; cursor: pointer; height: 110px; text-align: center; padding: 10px;">
+            <span style="color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: bold;">+ Ver las 20 fotos</span>
+          </div>
         </div>
       </div>
+
+      <!-- VISOR / MODAL PANTALLA COMPLETA PARA NAVEGAR -->
+      <div id="gallery-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.9); z-index: 99999; flex-direction: column; justify-content: center; align-items: center;">
+        
+        <!-- Botón Cerrar -->
+        <span onclick="closeGallery()" style="position: absolute; top: 20px; right: 35px; color: #fff; font-size: 35px; cursor: pointer; font-weight: bold; z-index: 100000;">&times;</span>
+        
+        <!-- Flecha Izquierda -->
+        <button onclick="changePhoto(-1)" style="position: absolute; left: 20px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--gold); padding: 15px 20px; cursor: pointer; border-radius: 50%; font-size: 1.2rem;">&#10094;</button>
+        
+        <!-- Imagen Principal -->
+        <img id="gallery-current-img" src="" alt="Imagen de galería" style="max-width: 85%; max-height: 80vh; object-fit: contain; border: 1px solid var(--card-border); border-radius: 4px;">
+        
+        <!-- Contador de fotos -->
+        <div id="gallery-counter" style="color: var(--gold); font-family: 'Cinzel', serif; margin-top: 15px; font-size: 1rem;">1 / 20</div>
+
+        <!-- Flecha Derecha -->
+        <button onclick="changePhoto(1)" style="position: absolute; right: 20px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid var(--gold); padding: 15px 20px; cursor: pointer; border-radius: 50%; font-size: 1.2rem;">&#10095;</button>
+      </div>
+
+      <!-- SCRIPT PARA EL FUNCIONAMIENTO DE LA GALERÍA -->
+      <script>
+        let currentPhotoIndex = 1;
+        const totalPhotos = 20;
+
+        function openGallery(index) {
+          currentPhotoIndex = index;
+          updateGalleryView();
+          const modal = document.getElementById('gallery-modal');
+          modal.style.display = 'flex';
+        }
+
+        function closeGallery() {
+          document.getElementById('gallery-modal').style.display = 'none';
+        }
+
+        function changePhoto(step) {
+          currentPhotoIndex += step;
+          if (currentPhotoIndex > totalPhotos) currentPhotoIndex = 1;
+          if (currentPhotoIndex < 1) currentPhotoIndex = totalPhotos;
+          updateGalleryView();
+        }
+
+        function updateGalleryView() {
+          const imgElement = document.getElementById('gallery-current-img');
+          const counterElement = document.getElementById('gallery-counter');
+          
+          imgElement.src = `img/galeria${currentPhotoIndex}.jpg`;
+          imgElement.onerror = function() {
+            this.src = `https://via.placeholder.com/800x600?text=Galeria+${currentPhotoIndex}`;
+          };
+          counterElement.innerText = `${currentPhotoIndex} / ${totalPhotos}`;
+        }
+
+        // Navegar con flechas del teclado y cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+          const modal = document.getElementById('gallery-modal');
+          if (modal.style.display === 'flex') {
+            if (e.key === 'ArrowLeft') changePhoto(-1);
+            if (e.key === 'ArrowRight') changePhoto(1);
+            if (e.key === 'Escape') closeGallery();
+          }
+        });
+      </script>
+
+    <!-- PARTE 2: ENTREVISTAS (Reproductor integrado con pestañas numéricas) -->
+      <div style="margin-bottom: 35px;">
+        <h3 style="font-family:'Cinzel', serif; color:var(--gold); font-size:1.3rem; margin-bottom:10px;">Entrevistas</h3>
+        <p style="font-size:0.88rem; color:#ccc; margin-bottom: 15px;">Testimonios audiovisuales y registros de la memoria. Selecciona una entrevista para reproducirla aquí mismo:</p>
+        
+        <!-- Botones de navegación (solo números) -->
+        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px;">
+          <button onclick="switchVideo('mdGSzw8p-SY', 1, this)" class="interview-btn active-interview" style="background: var(--gold); color: #000; border: 1px solid var(--gold); padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; font-weight: bold; transition: all 0.2s;">01</button>
+          <button onclick="switchVideo('HIxS7PX6r8o', 2, this)" class="interview-btn" style="background: rgba(255,255,255,0.05); color: #e0e0e0; border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;">02</button>
+          <button onclick="switchVideo('PiGo4jViolw', 3, this)" class="interview-btn" style="background: rgba(255,255,255,0.05); color: #e0e0e0; border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;">03</button>
+          <button onclick="switchVideo('5nGbE4VCu6A', 4, this)" class="interview-btn" style="background: rgba(255,255,255,0.05); color: #e0e0e0; border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;">04</button>
+          <button onclick="switchVideo('zPFBKzUp28M', 5, this)" class="interview-btn" style="background: rgba(255,255,255,0.05); color: #e0e0e0; border: 1px solid var(--card-border); padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;">05</button>
+        </div>
+
+        <!-- Contenedor del Iframe de YouTube (Reproductor embebido) -->
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 6px; overflow: hidden; border: 1px solid var(--card-border);">
+          <iframe id="youtube-player" src="https://www.youtube.com/embed/mdGSzw8p-SY" title="Entrevista YouTube" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- SCRIPT PARA CAMBIAR DE VIDEO DINÁMICAMENTE -->
+      <script>
+        function switchVideo(videoId, index, btnElement) {
+          // Cambiar la fuente del iframe al video seleccionado
+          const iframe = document.getElementById('youtube-player');
+          iframe.src = `https://www.youtube.com/embed/${videoId}`;
+
+          // Actualizar los estilos visuales de los botones de las pestañas
+          const buttons = document.querySelectorAll('.interview-btn');
+          buttons.forEach(btn => {
+            btn.style.background = 'rgba(255,255,255,0.05)';
+            btn.style.color = '#e0e0e0';
+            btn.style.borderColor = 'var(--card-border)';
+            btn.style.fontWeight = 'normal';
+          });
+
+          // Resaltar el botón activo
+          btnElement.style.background = 'var(--gold)';
+          btnElement.style.color = '#000';
+          btnElement.style.borderColor = 'var(--gold)';
+          btnElement.style.fontWeight = 'bold';
+        }
+      </script>
+
+     <!-- PARTE 3: AUDIO 3D (Solo Audio + Advertencia +18) -->
+      <div>
+        <h3 style="font-family:'Cinzel', serif; color:var(--gold); font-size:1.3rem; margin-bottom:10px;">
+          Audio 3D Inmersivo 
+          <span style="background: var(--accent); color: #fff; font-size: 0.7rem; padding: 2px 6px; border-radius: 3px; margin-left: 8px; vertical-align: middle;">+18</span>
+        </h3>
+        <p style="font-size:0.88rem; color:#ccc; margin-bottom: 15px;">Experiencia sonora espacial (se recomienda escuchar con auriculares).</p>
+        
+        <!-- Tarjeta de Control del Audio -->
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); padding: 20px; border-radius: 6px; text-align: center;">
+          
+          <div style="display: inline-block; background: rgba(139, 0, 0, 0.2); border: 1px solid var(--accent); color: #ff6b6b; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; margin-bottom: 12px; font-weight: bold;">
+            ⚠️ ADVERTENCIA: Contenido sensible / Audios impactantes (+18)
+          </div>
+
+          <p style="font-size: 0.9rem; margin-bottom: 15px; color: #fff; font-family:'Cinzel', serif;">🎧 Pieza Sonora Especial en 3D</p>
+          
+          <!-- Botón personalizado para reproducir audio -->
+          <button id="btn-play-audio3d" onclick="toggleAudio3D()" style="background: var(--accent); color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-family: 'Cinzel', serif; letter-spacing: 0.5px; transition: background 0.2s;">
+            ▶ Reproducir Audio 3D
+          </button>
+
+          <!-- Iframe oculto visualmente (solo mantiene la emisión de sonido) -->
+          <div style="width: 0; height: 0; overflow: hidden; opacity: 0; position: absolute;">
+            <iframe id="audio3d-player" width="100" height="100" src="https://www.youtube.com/embed/GjI-_ZlFlsg?enablejsapi=1" title="Audio 3D" allow="autoplay"></iframe>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
