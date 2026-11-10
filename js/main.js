@@ -76,24 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 }); // <--- Cierra el addEventListener de DOMContentLoaded
 
-// Control de reproducción / pausa del Audio 3D
-let isPlayingAudio = false;
-
-function toggleAudio3D() {
-  const iframe = document.getElementById('audio3d-player');
+// Activa el reproductor y le da play automáticamente al hacer clic en el botón de advertencia
+function activateAudio3D() {
+  const container = document.getElementById('audio-container');
   const btn = document.getElementById('btn-play-audio3d');
 
-  if (!isPlayingAudio) {
-    // Mandar comando de play vía YouTube JS API
-    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    btn.innerHTML = '⏸ Pausar Audio 3D';
-    btn.style.background = '#a00000';
-    isPlayingAudio = true;
-  } else {
-    // Mandar comando de pause vía YouTube JS API
-    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-    btn.innerHTML = '▶ Reproducir Audio 3D';
-    btn.style.background = 'var(--accent)';
-    isPlayingAudio = false;
-  }
+  // Mostramos el contenedor del reproductor
+  container.style.display = 'block';
+  
+  // Inyectamos el iframe con autoplay=1 para que el navegador ejecute el sonido tras la interacción del usuario
+  container.innerHTML = `
+    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GjI-_ZlFlsg?autoplay=1" title="Audio 3D" style="border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  `;
+
+  // Cambiamos el estado del botón
+  btn.innerHTML = '✔ Reproduciendo Audio 3D';
+  btn.style.background = '#2e7d32'; // Verde sutil indicando activo
+  btn.disabled = true; // Evita clics repetidos
 }
