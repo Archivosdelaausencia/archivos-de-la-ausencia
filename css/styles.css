@@ -1,11 +1,12 @@
 :root {
   --bg-dark: #0f0f12;
-  --gold: #d4af37;
-  --accent: #8b0000;
+  --gold: #314750 ;
+  --accent: #2f2f2f;
   --paper-text: #1a1a1a;
   --card-bg: rgba(255, 255, 255, 0.04);
   --card-border: rgba(255, 255, 255, 0.1);
 }
+
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
