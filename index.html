@@ -717,7 +717,7 @@
         }
       </script>
 
-    <!-- PARTE 3: AUDIO 3D (Reproductor compacto + Advertencia +18) -->
+     <!-- PARTE 3: AUDIO 3D (Reproductor con Activación por Botón y Advertencia +18) -->
 <div>
   <h3 style="font-family:'Cinzel', serif; color:var(--gold); font-size:1.3rem; margin-bottom:10px;">
     Audio 3D Inmersivo 
@@ -733,19 +733,18 @@
 
     <p style="font-size: 0.9rem; margin-bottom: 15px; color: #fff; font-family:'Cinzel', serif;">🎧 Pieza Sonora Especial en 3D</p>
     
-    <!-- Botón personalizado para reproducir audio -->
-    <button id="btn-play-audio3d" onclick="toggleAudio3D()" style="background: var(--accent); color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-family: 'Cinzel', serif; letter-spacing: 0.5px; transition: background 0.2s; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;">
+    <!-- Botón que activa el reproductor al hacer clic -->
+    <button id="btn-play-audio3d" onclick="activateAudio3D()" style="background: var(--accent); color: #fff; border: none; padding: 10px 22px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; font-family: 'Cinzel', serif; letter-spacing: 0.5px; transition: background 0.2s; display: block; margin: 0 auto;">
       ▶ Reproducir Audio 3D
     </button>
 
-    <!-- Contenedor del reproductor (ya no está invisible en 0px para evitar el bloqueo del navegador, pero ocupa poco espacio y es discreto) -->
-    <div style="width: 100%; max-width: 250px; height: 140px; margin: 0 auto; border-radius: 4px; overflow: hidden; border: 1px solid var(--card-border); background: #000;">
-      <iframe id="audio3d-player" width="100%" height="100%" src="https://www.youtube.com/embed/GjI-_ZlFlsg?enablejsapi=1" title="Audio 3D" style="border:0;" allow="autoplay"></iframe>
+    <!-- Contenedor del Iframe (inicialmente vacío o con texto, se llena al hacer clic para forzar la reproducción limpia) -->
+    <div id="audio-container" style="margin-top: 15px; width: 100%; max-width: 300px; height: 160px; margin-left: auto; margin-right: auto; border-radius: 4px; overflow: hidden; display: none; border: 1px solid var(--card-border);">
+      <!-- El iframe se inyecta dinámicamente con autoplay para que suene de una -->
     </div>
 
   </div>
 </div>
-
     </div>
   </section>
 
