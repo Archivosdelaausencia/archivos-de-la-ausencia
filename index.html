@@ -763,25 +763,31 @@
       </a>
     </div>
 
-    <div class="contact-container">
-      <h3 style="font-family:'Cinzel', serif; color:var(--gold); text-align:center; margin-bottom:20px; font-size:1.2rem;">Déjanos tu Mensaje</h3>
-      <form onsubmit="handleFormSubmit(event)">
-        <div class="form-group">
-          <label>Nombre y Apellido</label>
-          <input type="text" class="form-control" placeholder="Tu nombre..." required>
-        </div>
-        <div class="form-group">
-          <label>Correo Electrónico</label>
-          <input type="email" class="form-control" placeholder="tu@email.com" required>
-        </div>
-        <div class="form-group">
-          <label>Mensaje o Comentario</label>
-          <textarea class="form-control" rows="4" placeholder="Escribe tu consulta o reflexión..." required></textarea>
-        </div>
-        <button type="submit" class="btn-submit">ENVIAR MENSAJE</button>
-      </form>
+    <!-- MURAL INTERACTIVO DE MENSAJES -->
+<div class="contact-container" style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--card-border); border-radius: 6px;">
+  <h3 style="font-family:'Cinzel', serif; color:var(--gold); text-align:center; margin-bottom:10px; font-size:1.3rem;">Mural de la Memoria y Reflexión</h3>
+  <p style="text-align: center; font-size: 0.85rem; color: #ccc; margin-bottom: 20px;">La memoria continua en vos. Dejá tu reflexión o testimonio de forma anónima. Las palabras también son archivo</p>
+  
+  <!-- Formulario para agregar comentarios -->
+  <form onsubmit="addMuralMessage(event)" style="margin-bottom: 30px;">
+    <div class="form-group" style="margin-bottom: 12px;">
+      <label style="display: block; color: var(--gold); font-size: 0.8rem; margin-bottom: 4px;">Nombre / Firma</label>
+      <input type="text" id="muralName" class="form-control" placeholder="Tu nombre o anónimo..." required style="width: 100%; padding: 8px 12px; background: rgba(0,0,0,0.4); border: 1px solid var(--card-border); color: #fff; border-radius: 4px; box-sizing: border-box;">
     </div>
-  </section>
+    
+    <div class="form-group" style="margin-bottom: 15px;">
+      <label style="display: block; color: var(--gold); font-size: 0.8rem; margin-bottom: 4px;">Mensaje o Comentario</label>
+      <textarea id="muralMessage" class="form-control" rows="3" placeholder="Escribe tu reflexión para el mural..." required style="width: 100%; padding: 8px 12px; background: rgba(0,0,0,0.4); border: 1px solid var(--card-border); color: #fff; border-radius: 4px; box-sizing: border-box; resize: vertical;"></textarea>
+    </div>
+    
+    <button type="submit" class="btn-submit" style="background: var(--gold); color: #000; border: none; padding: 10px 20px; font-family: 'Cinzel', serif; font-weight: bold; font-size: 0.85rem; border-radius: 4px; cursor: pointer; width: 100%; transition: background 0.2s;">PUBLICAR EN EL MURAL</button>
+  </form>
+
+  <!-- Lista donde se van mostrando todos los mensajes del mural -->
+  <div id="muralBoard" style="display: flex; flex-direction: column; gap: 12px; max-height: 350px; overflow-y: auto; padding-right: 5px;">
+    <!-- Los mensajes guardados se inyectan acá automáticamente -->
+  </div>
+</div>
 
   <!-- Footer -->
   <footer class="magazine-footer">
